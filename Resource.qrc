@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Language/GUWar_zh_CN.qm</file>
+    </qresource>
+</RCC>
