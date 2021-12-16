@@ -4,7 +4,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Source/MainWindow.cpp" line="40"/>
+        <location filename="../Source/MainWindow.cpp" line="55"/>
         <source>GUWar</source>
         <translation type="unfinished"></translation>
     </message>

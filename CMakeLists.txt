@@ -19,9 +19,11 @@ set(PROJECT_SOURCES
 # Source files
 		Source/Main.cpp
 		Source/MainWindow.cpp
+		Source/Soldier.cpp
 # Header files
 		Include/Pch.h
 		Include/MainWindow.h
+		Include/Soldier.h
 # Resource files
 		Resource.qrc
 # Translation files

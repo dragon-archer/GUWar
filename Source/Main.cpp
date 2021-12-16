@@ -1,4 +1,5 @@
 #include <MainWindow.h>
+#include <Soldier.h>
 
 using namespace GU;
 int main(int argc, char *argv[])
@@ -11,5 +12,6 @@ int main(int argc, char *argv[])
 	}
 	MainWindow window;
 	window.show();
+	// qDebug() << sizeof(QObject) << sizeof(QWidget) << sizeof(QPainter) << sizeof(QPaintDevice) << sizeof(QApplication) << sizeof(QMainWindow);
 	return app.exec();
 }

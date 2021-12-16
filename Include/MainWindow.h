@@ -1,7 +1,8 @@
-#ifndef MainWindow_H
-#define MainWindow_H
+#ifndef _GUWAR_MAINWINDOW_H
+#define _GUWAR_MAINWINDOW_H
 
 #include <Pch.h>
+#include <Soldier.h>
 
 namespace GU
 {
@@ -15,12 +16,16 @@ namespace GU
 
 		void setupUi();
 		void retranslateUi();
+
+		void keyPressEvent(QKeyEvent* event);
 	private:
 		// Qt Widgets
 		QMenuBar* mMenuBar;
 		QStatusBar* mStatusBar;
 		QWidget* mCentralWidget;
+
+		Soldier* mSoldier;
 	};
 }
 
-#endif // MainWindow_H
+#endif // _GUWAR_MAINWINDOW_H
