@@ -21,23 +21,30 @@ namespace GU
 	{
 		Q_OBJECT
 	public:
-		Q_PROPERTY(QPoint mPosition READ position WRITE setPosition)
 
 		Soldier(QWidget* parent = nullptr);
 		~Soldier();
 
-		QPoint position() const;
-		void setPosition(const QPoint& position);
-		SoldierData* data() const;
-		void setData(SoldierData* data);
-		uint team() const;
-		void setTeam(uint team);
+		inline QPoint position() const
+			{ return mPosition; }
+		inline void setPosition(const QPoint& position)
+			{ mPosition = position; }
+		inline SoldierData* data() const
+			{ return mData; }
+		inline void setData(SoldierData* data)
+			{ if(mData != data) mData = new(mData) SoldierData(*data); }
+		inline uint team() const
+			{ return mTeam; }
+		inline void setTeam(uint team)
+			{ mTeam = team; }
 
 		void move(const QVector2D& direction);
+		void attack();
 
 		void paintEvent(QPaintEvent* event);
 
 		static SoldierData defaultData;
+		static QList<Soldier*> getSoldierList(QObject* parent);
 	protected:
 		SoldierData* mData;
 		QPoint mPosition;

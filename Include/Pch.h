@@ -12,6 +12,8 @@
 #include <QMenuBar>
 #include <QPainter>
 #include <QStatusBar>
+#include <QTime>
+#include <QTimer>
 #include <QTranslator>
 #include <QVector2D>
 #include <QWidget>
@@ -20,7 +22,10 @@
 #endif
 
 #include <algorithm>
+#include <chrono>
 #include <fstream>
 #include <random>
+
+using namespace std::literals;
 
 #endif /* _GUWAR_PCH_H */

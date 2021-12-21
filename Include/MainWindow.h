@@ -17,14 +17,21 @@ namespace GU
 		void setupUi();
 		void retranslateUi();
 
-		void keyPressEvent(QKeyEvent* event);
+		// virtual void keyPressEvent(QKeyEvent* event) override;
+
+	public Q_SLOTS:
+		void showFps();
+
 	private:
 		// Qt Widgets
 		QMenuBar* mMenuBar;
 		QStatusBar* mStatusBar;
 		QWidget* mCentralWidget;
+		QTimer *mTimerFps, *mTimerMain;
 
-		Soldier* mSoldier;
+		Soldier *mSoldier1, *mSoldier2;
+
+		int mFrameCnt;
 	};
 }
 

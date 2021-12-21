@@ -17,12 +17,14 @@ set(TS_FILES Language/${PROJECT_NAME}_zh_CN.ts)
 
 set(PROJECT_SOURCES
 # Source files
+		Source/Common.cpp
 		Source/Main.cpp
 		Source/MainWindow.cpp
 		Source/Soldier.cpp
 # Header files
-		Include/Pch.h
+		Include/Common.h
 		Include/MainWindow.h
+		Include/Pch.h
 		Include/Soldier.h
 # Resource files
 		Resource.qrc

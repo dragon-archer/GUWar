@@ -7,6 +7,17 @@ namespace GU
 	{
 		setParent(parent);
 		setupUi();
+		grabKeyboard();
+		mTimerMain = new QTimer(this);
+		mTimerMain->setInterval(1000ms);
+		connect(mTimerMain, QTimer::timeout, mSoldier1, Soldier::attack);
+		connect(mTimerMain, QTimer::timeout, mSoldier2, Soldier::attack);
+		mTimerMain->start();
+		// mTimerFps = new QTimer(this);
+		// mTimerFps->setInterval(1000ms);
+		// connect(mTimerFps, QTimer::timeout, this, MainWindow::showFps);
+		// mFrameCnt = 0;
+		// mTimerFps->start();
 	}
 
 	MainWindow::~MainWindow()
@@ -33,11 +44,15 @@ namespace GU
 		mStatusBar->setObjectName("mStatusBar");
 		mStatusBar->setGeometry(0, 692, 1280, 28);
 		setStatusBar(mStatusBar);
-		mSoldier = new Soldier(mCentralWidget);
-		mSoldier->setPosition({600, 400});
-		mSoldier->setObjectName("mSoldier");
+		mSoldier1 = new Soldier(mCentralWidget);
+		mSoldier1->setPosition({600, 400});
+		mSoldier1->setObjectName("mSoldier1");
+		mSoldier1->setTeam(0);
+		mSoldier2 = new Soldier(mCentralWidget);
+		mSoldier2->setPosition({800, 300});
+		mSoldier2->setObjectName("mSoldier2");
+		mSoldier2->setTeam(1);
 
-		grabKeyboard();
 		retranslateUi();
 	}
 
@@ -46,37 +61,41 @@ namespace GU
 		this->setWindowTitle(QCoreApplication::translate("MainWindow", "GUWar"));
 	}
 
-	void MainWindow::keyPressEvent(QKeyEvent* event)
+	// void MainWindow::keyPressEvent(QKeyEvent* event)
+	// {
+	// 	QVector2D dir;
+	// 	switch(event->key()) {
+	// 		case Qt::Key_Up:
+	// 		case Qt::Key_W:
+	// 			dir = {0, -1};
+	// 			break;
+	// 		case Qt::Key_S:
+	// 		case Qt::Key_Down:
+	// 			dir = {0, 1};
+	// 			break;
+	// 		case Qt::Key_A:
+	// 		case Qt::Key_Left:
+	// 			dir = {-1, 0};
+	// 			break;
+	// 		case Qt::Key_D:
+	// 		case Qt::Key_Right:
+	// 			dir = {1, 0};
+	// 			break;
+	// 		default:
+	// 			QWidget::keyPressEvent(event);
+	// 			break;
+	// 	}
+	// 	for(auto s : Soldier::getSoldierList(mCentralWidget)) {
+	// 		s->move(dir);
+	// 		s->update();
+	// 	}
+	// 	++mFrameCnt;
+	// }
+
+	void MainWindow::showFps()
 	{
-		auto c = mCentralWidget->children();
-		// QPoint qp;
-		QVector2D dir;
-		switch(event->key()) {
-			case Qt::Key_Up:
-			case Qt::Key_W:
-				dir = {0, -1};
-				break;
-			case Qt::Key_S:
-			case Qt::Key_Down:
-				dir = {0, 1};
-				break;
-			case Qt::Key_A:
-			case Qt::Key_Left:
-				dir = {-1, 0};
-				break;
-			case Qt::Key_D:
-			case Qt::Key_Right:
-				dir = {1, 0};
-				break;
-			default:
-				QWidget::keyPressEvent(event);
-				break;
-		}
-		for(auto i : c) {
-			if(i->objectName().contains("Soldier")) {
-				auto s = dynamic_cast<Soldier*>(i);
-				s->move(dir);
-			}
-		}
+		static int lastFrameCnt = 0;
+		qDebug() << "Fps: " << mFrameCnt - lastFrameCnt;
+		lastFrameCnt = mFrameCnt;
 	}
 }
